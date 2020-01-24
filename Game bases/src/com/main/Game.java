@@ -56,6 +56,15 @@ public class Game extends Canvas implements Runnable{
 		bs.show();
 	}
 
+	public static int limits(int var, int max, int min)
+	{
+		System.out.println(var);
+		if(var<=min)
+			return min;
+		else if(var>= max)
+			return max;
+		else return var;
+	}
 	public static void main(String[] args) {
 		new Game();
 

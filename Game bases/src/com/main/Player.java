@@ -13,9 +13,12 @@ public class Player extends GameObject{
 		
 	}
 	public void tick() {
-		
 		x+= velX;
 		y+=velY;
+		
+		x=Game.limits(x,Game.WIDTH-35,0);
+		y=Game.limits(y,Game.HEIGHT-59,0);
+		
 	}
 	public void render(Graphics g) {
 		if(id==ID.Player)
