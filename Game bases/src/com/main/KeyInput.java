@@ -6,6 +6,9 @@ import java.awt.event.KeyEvent;
 public class KeyInput extends KeyAdapter
 {
 	private Handler handler;
+	private int speed=5;
+	private int finalXSpeed;
+	private int finalYSpeed;
 	
 	public KeyInput(Handler handler) {
 		this.handler= handler;
@@ -15,6 +18,9 @@ public class KeyInput extends KeyAdapter
 	{
 		int key = e.getKeyCode();
 		
+		if (key== KeyEvent.VK_ESCAPE)
+			System.exit(1);
+		
 		for (int i=0; i<handler.object.size(); i++)
 		{
 			
@@ -22,31 +28,18 @@ public class KeyInput extends KeyAdapter
 			
 			if(tempObject.getId()==ID.Player)
 			{
-				if(key==KeyEvent.VK_D)
-					tempObject.setVelX(5);
-				if(key==KeyEvent.VK_Q)
-					tempObject.setVelX(-5);
-				if(key==KeyEvent.VK_S)
-					tempObject.setVelY(5);
-				if(key==KeyEvent.VK_Z)
-					tempObject.setVelY(-5);
-				
-			}
-			if (tempObject.getId()==ID.Player2)
-			{
-				if(key==KeyEvent.VK_RIGHT)
-					tempObject.setVelX(5);
-				if(key==KeyEvent.VK_LEFT)
-					tempObject.setVelX(-5);
-				if(key==KeyEvent.VK_DOWN)
-					tempObject.setVelY(5);
-				if(key==KeyEvent.VK_UP)
-					tempObject.setVelY(-5);
+				if(key==KeyEvent.VK_D) {
+					tempObject.setVelX(finalXSpeed=speed);}
+				if(key==KeyEvent.VK_Q) {
+					tempObject.setVelX(finalXSpeed=-speed);}
+				if(key==KeyEvent.VK_S) {
+					tempObject.setVelY(finalYSpeed=speed);}
+				if(key==KeyEvent.VK_Z) {
+					tempObject.setVelY(finalYSpeed=-speed);}
 			}
 		}
 		
 	}
-	
 	public void keyReleased(KeyEvent e)
 	{
 		int key = e.getKeyCode();
@@ -58,26 +51,19 @@ public class KeyInput extends KeyAdapter
 			
 			if(tempObject.getId()==ID.Player)
 			{
-				if(key==KeyEvent.VK_D)
-					tempObject.setVelX(0);
-				if(key==KeyEvent.VK_Q)
-					tempObject.setVelX(0);
-				if(key==KeyEvent.VK_S)
-					tempObject.setVelY(0);
-				if(key==KeyEvent.VK_Z)
-					tempObject.setVelY(0);
+				if(key==KeyEvent.VK_D) {
+					if(finalXSpeed>0)
+						tempObject.setVelX(0);}
+				if(key==KeyEvent.VK_Q) {
+					if(finalXSpeed<0)
+						tempObject.setVelX(0);}
+				if(key==KeyEvent.VK_S) {
+					if(finalYSpeed>0)
+						tempObject.setVelY(0);}
+				if(key==KeyEvent.VK_Z) {
+					if(finalYSpeed<0)
+						tempObject.setVelY(0);}
 				
-			}
-			if (tempObject.getId()==ID.Player2)
-			{
-				if(key==KeyEvent.VK_RIGHT)
-					tempObject.setVelX(0);
-				if(key==KeyEvent.VK_LEFT)
-					tempObject.setVelX(0);
-				if(key==KeyEvent.VK_DOWN)
-					tempObject.setVelY(0);
-				if(key==KeyEvent.VK_UP)
-					tempObject.setVelY(0);
 			}
 		}
 	}

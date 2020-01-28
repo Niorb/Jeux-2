@@ -3,7 +3,15 @@ package com.main;
 public enum ID {
 	
 	Player(),
-	Player2(),
-	basicEnemy();
+	basicEnnemy(),
+	fastEnnemy,
+	smartEnnemy,
+	Healer,
+	Boss1,
+	Boss2,
+	Boss2Bullet,
+	Boss3,
+	Boss3Laser,
+	Trail();
 
 }

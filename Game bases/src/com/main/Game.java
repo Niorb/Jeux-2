@@ -3,6 +3,8 @@ package com.main;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferStrategy;
 import java.util.Random;
 
@@ -14,27 +16,59 @@ public class Game extends Canvas implements Runnable{
 	
 	private Thread thread;
 	private Handler handler;
+	private HUD hud;
+	private Menu menu;
+//	private int ennemies = 5;
+	
+	private Spawner spawner;
+	
+	
 	
 	private Random r;
 	
 	private boolean running = false;
 	
+	enum STATE {
+		Game,
+		Menu;
+	}
+	public static STATE gameState = STATE.Menu;
+	public static STATE getGameState() {
+		return gameState;
+	}
+	public static void setGameState(STATE gameState) {
+		Game.gameState = gameState;
+	}
+	
 	public Game()
 	{
 		handler= new Handler();
+		menu=new Menu();
 		
+		hud = new HUD();
+		spawner = new Spawner(handler, hud);
+		this.addMouseListener(menu);
 		this.addKeyListener(new KeyInput(handler) );
+		
 		new Window(WIDTH, HEIGHT, "Let's build a Game !", this);
 		r = new Random();
-		handler.addObject(new Player(WIDTH/2-32, HEIGHT/2-32, ID.Player));
-		handler.addObject(new Player(WIDTH/2-20, HEIGHT/2-32, ID.Player2));
-		for(int u =0; u<10 ; u++)
-			handler.addObject(new basicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.basicEnemy));
+//		if(gameState==STATE.Game)
+//		{
+//			handler.addObject(new Player(WIDTH/2-32, HEIGHT/2-32, ID.Player, handler));
+////			for(int u =0; u<ennemies ; u++)
+//			handler.addObject(new basicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.basicEnnemy,handler));
+//		}
 	}
 	
 	private void tick()
 	{
-		handler.tick();
+		if(gameState==STATE.Game)
+		{
+			hud.tick();
+			spawner.tick();
+			handler.tick();
+		}else if (gameState==STATE.Menu)
+			menu.tick();
 	}
 	
 	private void render()
@@ -49,16 +83,19 @@ public class Game extends Canvas implements Runnable{
 		
 		Graphics g = bs.getDrawGraphics();
 		
-		g.setColor(Color.green);
+		g.setColor(Color.black);
 		g.fillRect(0,0, WIDTH,HEIGHT);
 		handler.render(g);
+		if(gameState==STATE.Game) {
+			hud.render(g);
+			} else if (gameState==STATE.Menu)
+				menu.render(g);
 		g.dispose();
 		bs.show();
 	}
 
-	public static int limits(int var, int max, int min)
+	public static float limits(float var, int max, int min)
 	{
-		System.out.println(var);
 		if(var<=min)
 			return min;
 		else if(var>= max)
@@ -90,6 +127,7 @@ public class Game extends Canvas implements Runnable{
 
 	@Override
 	public void run() {
+		this.requestFocus();
 		long lastTime= System.nanoTime();
 		double amountOfTicks = 60.0;
 		double ns = 1000000000 / amountOfTicks;
