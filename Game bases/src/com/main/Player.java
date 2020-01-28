@@ -24,7 +24,7 @@ public class Player extends GameObject{
 		x=Game.limits(x,Game.WIDTH-50,0);
 		y=Game.limits(y,Game.HEIGHT-70,0);
 		
-		handler.addObject(new Trail(x, y, ID.Trail, 32, 32, 0.08f, Color.blue, handler));
+	//	handler.addObject(new Trail(x, y, ID.Trail, 32, 32, 0.08f, Color.blue, handler));
 		
 		collision();
 		

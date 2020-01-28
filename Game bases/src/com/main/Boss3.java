@@ -3,7 +3,6 @@ package com.main;
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.Random;
 
@@ -56,7 +55,9 @@ public class Boss3 extends GameObject{
 			System.out.println("1: " + handler.object.size());
 			for(int i = 0; i<handler.object.size();i++)
 			{
+				System.out.println("done");
 				GameObject tempObject = handler.object.get(i);
+				System.out.println(" ID : " +tempObject.getId());
 				if(tempObject.getId()==ID.Boss3Laser)
 				{
 					System.out.println(" 2: " + handler.object.size());
@@ -65,6 +66,7 @@ public class Boss3 extends GameObject{
 				}
 			}
 		//lasers
+			
 			//North
 			handler.addObject(new Boss3Laser(x+WidthBoss3/2-HeightTurretPart2/4, y-HeightTurretPart1-WidthTurretPart2-Game.HEIGHT,
 					ID.Boss3Laser, handler,WidthTurretPart2/2,Game.HEIGHT));
@@ -77,6 +79,8 @@ public class Boss3 extends GameObject{
 			//West
 			handler.addObject(new Boss3Laser(x-WidthTurretPart1-WidthTurretPart2-Game.WIDTH, y+HeightBoss3/2-HeightTurretPart2/4,
 					ID.Boss3Laser, handler, Game.WIDTH, HeightTurretPart2/2));		
+			
+			System.out.println(" 4: " + handler.object.size());
 		}
 		else timer--;
 	}

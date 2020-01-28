@@ -35,17 +35,21 @@ public class Spawner {
 	}
 	private void Boss3()
 	{
-		if(hud.getLevel()==1)
+		if(hud.getLevel()==3)
 		{
-			for(int i=0; i<handler.object.size();i++)
-			{
-				gameObject=handler.object.get(i);
-				if(gameObject.getId()!=ID.Player&&gameObject.getId()!=ID.Boss3
-						&&gameObject.getId()!=ID.Boss3Laser
-						) {
-					handler.removeObject(gameObject);
+			
+			//faire un clearAll de liste 
+			
+				for(int i=0; i<handler.object.size();i++)
+				{
+					gameObject=handler.object.get(i);
+					if(gameObject.getId()!=ID.Player&&gameObject.getId()!=ID.Boss3
+							&&gameObject.getId()!=ID.Boss3Laser
+							) {
+						handler.removeObject(gameObject);
+								}
 				}
-			}
+			
 			if(BossAlive==false) {
 				ScoreKeep=0;
 				handler.addObject(new Boss3(Game.WIDTH/3,100, ID.Boss3 , handler));	

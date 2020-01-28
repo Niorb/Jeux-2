@@ -8,8 +8,6 @@ import java.awt.event.MouseEvent;
 
 public class Menu extends MouseAdapter{
 	
-	//Score monte en pause
-	
 	private int WidthMenu=200;
 	private int HeightMenu=64;
 	private String play = "Play";
