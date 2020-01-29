@@ -2,6 +2,7 @@ package com.main;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.geom.Area;
 
 public abstract class GameObject 
 {
@@ -17,6 +18,8 @@ public abstract class GameObject
 	}
 	
 	public abstract Rectangle getBounds();
+	
+	public abstract Area getBoundsArea();
 	
 	public float getX() {
 		return x;

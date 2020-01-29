@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.geom.Area;
 
 public class Trail extends GameObject{
 	
@@ -47,6 +48,12 @@ public class Trail extends GameObject{
 		g.setColor(color);
 		g.fillRect((int)x, (int)y, width, height);
 		g2d.setComposite(makeTransparent(1));
+	}
+
+	@Override
+	public Area getBoundsArea() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

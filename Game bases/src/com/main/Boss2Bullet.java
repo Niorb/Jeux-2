@@ -3,6 +3,7 @@ package com.main;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.geom.Area;
 import java.util.Random;
 
 public class Boss2Bullet extends GameObject{
@@ -46,6 +47,12 @@ public class Boss2Bullet extends GameObject{
 
 	public Rectangle getBounds() {
 		return new Rectangle((int)x,(int)y, WidthBullet,HeightBullet);
+	}
+
+	@Override
+	public Area getBoundsArea() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

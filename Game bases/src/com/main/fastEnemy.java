@@ -3,6 +3,7 @@ package com.main;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.geom.Area;
 
 public class fastEnemy extends GameObject{
 	
@@ -40,6 +41,12 @@ public class fastEnemy extends GameObject{
 
 	public Rectangle getBounds() {
 		return new Rectangle((int)x,(int)y,WIDTHfastEnemy,HEIGHTfastEnemy);
+	}
+
+	@Override
+	public Area getBoundsArea() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
