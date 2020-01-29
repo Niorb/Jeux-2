@@ -54,7 +54,7 @@ public class Boss3Laser extends GameObject{
 	public Rectangle getBounds() {
 		return new Rectangle((int)x,(int)y, WidthLaser,HeightLaser);
 	}
-//	public boolean IsPolygonsIntersecting(Polygon a, Polygon b)
+//	public boolean IsPolygonsIntersecting(Polygon, Polygon b)
 //	{
 //	    foreach (var polygon in new[] { a, b })
 //	    {
@@ -92,7 +92,7 @@ public class Boss3Laser extends GameObject{
 //	    }
 //	    return true;
 //	}
-//	
+	
 	public Area getBoundsArea()
 	{
 		return null;

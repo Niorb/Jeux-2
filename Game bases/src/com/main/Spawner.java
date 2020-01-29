@@ -39,17 +39,17 @@ public class Spawner {
 	}
 	private void Boss3()
 	{
-		if(hud.getLevel()==2)
+		if(hud.getLevel()==16)
 		{	
 				for(int i=0; i<handler.object.size();i++)
 				{
 					gameObject=handler.object.get(i);
 					if(gameObject.getId()!=ID.Player&&gameObject.getId()!=ID.Boss3
-							&&gameObject.getId()!=ID.Boss3Laser
+							&&gameObject.getId()!=ID.Boss3Laser&&gameObject.getId()!=ID.Trail
 							) {
 						handler.removeObject(gameObject);
 						i--;
-								}
+						}
 				}
 			
 			if(BossAlive==false) {
