@@ -24,6 +24,39 @@ public class Boss3 extends GameObject{
 	private  int HeightTurretPart1;
 	private int WidthTurretPart2;
 	private  int HeightTurretPart2;
+	
+	private static double xLineNorth;
+	private static double xMaxLineNorth;
+	private static double yLineNorth;
+	private static double yMaxLineNorth;
+	
+	
+	public static double getxLineNorth() {
+		return xLineNorth;
+	}
+	public static double getxMaxLineNorth() {
+		return xMaxLineNorth;
+	}
+	public static double getyLineNorth() {
+		return yLineNorth;
+	}
+	public static double getyMaxLineNorth() {
+		return yMaxLineNorth;
+	}
+
+	private double xLineSouth;
+	private double xMaxLineSouth;
+	private double yLineSouth;
+	private double yMaxLineSouth;
+	private double xLineEast;
+	private double xMaxLineEast;
+	private double yLineEast;
+	private double yMaxLineEast;
+	private double xLineWest;
+	private double xMaxLineWest;
+	private double yLineWest;
+	private double yMaxLineWest;
+	
 	private Handler handler;
 	public static double RotationSpeed = 1.5;
 	private int timer=50,timer2=50;
@@ -81,6 +114,13 @@ public class Boss3 extends GameObject{
 			handler.addObject(new Boss3Laser(x+WidthBoss3/2-HeightTurretPart2/4, y-HeightTurretPart1-WidthTurretPart2-Game.HEIGHT,
 					ID.Boss3Laser, handler,WidthTurretPart2/2,Game.HEIGHT,
 					theta,x+WidthBoss3/2, y+HeightBoss3/2));
+			
+			xLineNorth=x+WidthBoss3/2-HeightTurretPart2/4;
+			yLineNorth=y-HeightTurretPart1-WidthTurretPart2-Game.HEIGHT;
+		 //	xMaxLineNorth=Boss3Laser.getBoss3Laser().getMaxX();
+			
+			//yMaxLineNorth= Boss3Laser.getBoss3Laser().getMaxY();
+			
 			//East
 			handler.addObject(new Boss3Laser(x+WidthBoss3+WidthTurretPart1+WidthTurretPart2, y+HeightBoss3/2-HeightTurretPart2/4,
 					ID.Boss3Laser, handler, Game.WIDTH, HeightTurretPart2/2,
@@ -123,7 +163,7 @@ public class Boss3 extends GameObject{
 		g2d.fillRect((int)x+WidthBoss3/2-WidthTurretPart1/2,(int)y+HeightBoss3, WidthTurretPart1,HeightTurretPart1);
 		//West
 		g2d.fillRect((int)x-WidthTurretPart1,(int)y+HeightBoss3/2-HeightTurretPart1/2, WidthTurretPart1,HeightTurretPart1);
-		//Lasers
+		
 		g2d.setTransform(old);
 	}
 	public Rectangle getBounds() {

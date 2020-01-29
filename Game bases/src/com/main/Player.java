@@ -46,17 +46,29 @@ public class Player extends GameObject{
 					HUD.HEALTH-=2;
 			}else if(tempObject.getId()==ID.Healer&&getBounds().intersects(tempObject.getBounds()))
 			{
-				
-				HUD.HEALTH+=2;
-				
+				HUD.HEALTH+=2;	
 			}else if(tempObject.getId()==ID.Boss1&& getBounds().intersects(tempObject.getBounds()) )
 				{
 					HUD.HEALTH=0;
-				}else if(tempObject.getId()==ID.Boss3Laser)
+				}
+					else if(tempObject.getId()==ID.Boss3Laser&&(getBounds().intersectsLine(
+							Boss3.getxLineNorth(),
+							Boss3.getyLineNorth(),
+							Boss3Laser.getMaxXLaser(),
+							Boss3Laser.getMaxYLaser())
+							))
 				{
-					HUD.HEALTH+=2;
+					HUD.HEALTH-=2;
 				}
 		}
+	}
+	public boolean collisionAngledRectangle(Rectangle player, GameObject laser)
+	{
+		double xPlayer= player.getX();
+		double yPlayer= player.getY();
+		
+		return false;
+		
 	}
 	public void render(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;

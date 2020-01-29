@@ -39,7 +39,7 @@ public class Spawner {
 	}
 	private void Boss3()
 	{
-		if(hud.getLevel()==16)
+		if(hud.getLevel()==1)
 		{	
 				for(int i=0; i<handler.object.size();i++)
 				{
@@ -57,7 +57,7 @@ public class Spawner {
 				handler.addObject(new Boss3(Game.WIDTH/3,100, ID.Boss3 , handler));	
 				BossAlive=true;
 			}
-			if(ScoreKeep>=600)
+			if(ScoreKeep>=6000)
 			{
 				hud.setLevel(17);
 				ScoreKeep=regulator+1;

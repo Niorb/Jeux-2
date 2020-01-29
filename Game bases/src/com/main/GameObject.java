@@ -6,7 +6,8 @@ import java.awt.geom.Area;
 
 public abstract class GameObject 
 {
-	protected float x, y;
+	protected  float x;
+	protected  float y;
 	protected ID id;
 	protected float velX, velY;
 	

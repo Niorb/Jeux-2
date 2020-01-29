@@ -17,7 +17,14 @@ public class Boss3Laser extends GameObject{
 	private double theta;
 	private float xRotationCenter;
 	private float yRotationCenter;
-	
+	public static Rectangle Boss3Laser;
+	public static Rectangle getBoss3Laser() {
+		return Boss3Laser;
+	}
+	public static void setBoss3Laser(Rectangle boss3Laser) {
+		Boss3Laser = boss3Laser;
+	}
+
 	private Handler handler;
 	
 	private Random r=new Random();
@@ -46,10 +53,20 @@ public class Boss3Laser extends GameObject{
 		g2d.rotate(Math.toRadians(theta), xRotationCenter, yRotationCenter);
 		g2d.setComposite(makeTransparent(0.5f));
 		g2d.setColor(Color.red);
-		g2d.fillRect((int)x,(int)y, WidthLaser,HeightLaser);
+		Boss3Laser = new Rectangle((int)x,(int)y, WidthLaser,HeightLaser);
+		g2d.fill(Boss3Laser);
 		g2d.setComposite(makeTransparent(1f));
 		g2d.setTransform(old);
 	}
+	public static double getMaxXLaser()
+	{
+		return Boss3Laser.getMaxX();
+	}
+	public static double getMaxYLaser()
+	{
+		return Boss3Laser.getMaxY();
+	}
+	
 
 	public Rectangle getBounds() {
 		return new Rectangle((int)x,(int)y, WidthLaser,HeightLaser);
