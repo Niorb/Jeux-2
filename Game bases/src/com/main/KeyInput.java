@@ -36,6 +36,10 @@ public class KeyInput extends KeyAdapter
 					tempObject.setVelY(finalYSpeed=speed);}
 				if(key==KeyEvent.VK_Z) {
 					tempObject.setVelY(finalYSpeed=-speed);}
+				if(key==KeyEvent.VK_ENTER)
+				{
+					HUD.HEALTH=200;
+				}
 			}
 		}
 		

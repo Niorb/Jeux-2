@@ -8,6 +8,7 @@ import java.awt.Polygon;
 import java.awt.Rectangle;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Area;
+import java.awt.geom.Line2D;
 import java.util.Random;
 @SuppressWarnings("unused")
 public class Boss3Laser extends GameObject{
@@ -48,6 +49,7 @@ public class Boss3Laser extends GameObject{
 		return (AlphaComposite.getInstance(type, alpha));
 	}
 	public void render(Graphics g) {
+		
 		Graphics2D g2d = (Graphics2D) g;
 		AffineTransform old = g2d.getTransform();
 		g2d.rotate(Math.toRadians(theta), xRotationCenter, yRotationCenter);
@@ -55,6 +57,14 @@ public class Boss3Laser extends GameObject{
 		g2d.setColor(Color.red);
 		Boss3Laser = new Rectangle((int)x,(int)y, WidthLaser,HeightLaser);
 		g2d.fill(Boss3Laser);
+		
+		Line2D Line = new Line2D.Double((int)x,(int)y, WidthLaser,HeightLaser);
+	//	AffineTransform at = AffineTransform.getRotateInstance(Math.toRadians(theta)/2,Line.getX1(), Line.getY1());
+		AffineTransform at = AffineTransform.getRotateInstance(Math.toRadians(theta), xRotationCenter, yRotationCenter);
+		g2d.setTransform(at);
+		g2d.draw(Line);
+//		g2d.rotate(Math.toRadians(theta), Line.getX1(), Line.getX2());
+		
 		g2d.setComposite(makeTransparent(1f));
 		g2d.setTransform(old);
 	}
@@ -70,6 +80,7 @@ public class Boss3Laser extends GameObject{
 
 	public Rectangle getBounds() {
 		return new Rectangle((int)x,(int)y, WidthLaser,HeightLaser);
+
 	}
 //	public boolean IsPolygonsIntersecting(Polygon, Polygon b)
 //	{

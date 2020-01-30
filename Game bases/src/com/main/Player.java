@@ -54,8 +54,8 @@ public class Player extends GameObject{
 					else if(tempObject.getId()==ID.Boss3Laser&&(getBounds().intersectsLine(
 							Boss3.getxLineNorth(),
 							Boss3.getyLineNorth(),
-							Boss3Laser.getMaxXLaser(),
-							Boss3Laser.getMaxYLaser())
+							Boss3.getxMaxLineNorth(),
+							Boss3.getyMaxLineNorth())
 							))
 				{
 					HUD.HEALTH-=2;
@@ -77,6 +77,10 @@ public class Player extends GameObject{
 			g2d.setColor(Color.blue);
 		
 		g2d.fillRect((int)x,(int)y, 32, 32);
+		g2d.drawLine((int) Boss3.getxLineNorth(),
+				(int)	Boss3.getyLineNorth(),
+				(int)	Boss3.getxMaxLineNorth(),
+				(int)	Boss3.getyMaxLineNorth());
 		
 	}
 	
