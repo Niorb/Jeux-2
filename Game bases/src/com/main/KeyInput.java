@@ -11,18 +11,45 @@ public class KeyInput extends KeyAdapter
 	private int speed=5;
 	private int finalXSpeed;
 	private int finalYSpeed;
+	private static boolean EscapeStatus=true;
 	
+	public static boolean isEscapeStatus() {
+		return EscapeStatus;
+	}
+
+	public static void setEscapeStatus(boolean escapeStatus) {
+		EscapeStatus = escapeStatus;
+	}
+
 	public KeyInput(Handler handler) {
 		this.handler= handler;
+		
 	}
+
 	
 	public void keyPressed(KeyEvent e)
 	{
 		int key = e.getKeyCode();
 		
-		if (key== KeyEvent.VK_ESCAPE)
-			Game.setGameState(STATE.Pause);
+		if (key==KeyEvent.VK_ESCAPE)
+			if(Game.getGameState()== STATE.Menu)
+			{
+				EscapeStatus=true;
+				System.exit(1);
+				
+			}else {
+				if(EscapeStatus)
+				{
+					Game.setGameState(STATE.Pause);
+					EscapeStatus=false;
+					
+				}else {
+					EscapeStatus=true;
+					System.exit(1);
+				}	
+			}
 		
+				
 		for (int i=0; i<handler.object.size(); i++)
 		{
 			

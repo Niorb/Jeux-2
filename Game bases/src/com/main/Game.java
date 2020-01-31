@@ -17,9 +17,7 @@ public class Game extends Canvas implements Runnable{
 	private Thread thread;
 	private Handler handler;
 	private HUD hud;
-	private Menu menu;
-	private Pause pause;
-//	private int ennemies = 5;
+	private Menus menus;
 	
 	private Spawner spawner;
 	
@@ -45,13 +43,11 @@ public class Game extends Canvas implements Runnable{
 	public Game()
 	{
 		handler= new Handler();
-		menu=new Menu();
-		pause = new Pause();
+		menus = new Menus();
 		
 		hud = new HUD();
 		spawner = new Spawner(handler, hud);
-		this.addMouseListener(menu);
-		this.addMouseListener(pause);
+		this.addMouseListener(menus);
 		this.addKeyListener(new KeyInput(handler) );
 		
 		new Window(WIDTH, HEIGHT, "Let's build a Game !", this);
@@ -71,10 +67,10 @@ public class Game extends Canvas implements Runnable{
 			hud.tick();
 			spawner.tick();
 			handler.tick();
-		}else if (gameState==STATE.Menu)
-			menu.tick();
-		else if(gameState==STATE.Pause)
-			pause.tick();
+		}else
+		{
+			menus.tick();
+		}
 	}
 	
 	private void render()
@@ -85,8 +81,6 @@ public class Game extends Canvas implements Runnable{
 			this.createBufferStrategy(3);
 			return;
 		}
-		
-		
 		Graphics g = bs.getDrawGraphics();
 		
 		g.setColor(Color.black);
@@ -94,10 +88,11 @@ public class Game extends Canvas implements Runnable{
 		handler.render(g);
 		if(gameState==STATE.Game) {
 			hud.render(g);
-			} else if (gameState==STATE.Menu)
-				menu.render(g);
-			else if(gameState==STATE.Pause)
-				pause.render(g);
+			}
+		else
+			{
+			menus.render(g);
+			}
 		g.dispose();
 		bs.show();
 	}

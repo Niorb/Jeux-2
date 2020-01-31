@@ -54,7 +54,7 @@ public class Player extends GameObject{
 				HUD.HEALTH+=2;	
 			}else if(tempObject.getId()==ID.Boss1&& getBounds().intersects(tempObject.getBounds()) )
 				{
-					HUD.HEALTH=0;
+					HUD.HEALTH-=30;
 				}
 			try {
 				if((tempObject.getId()==ID.Boss3Laser&&(Boss3Laser.getLine().intersects(getBounds())||Boss3Laser2.getLine().intersects(getBounds())||
