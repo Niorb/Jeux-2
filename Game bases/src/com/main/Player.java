@@ -6,7 +6,10 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.Rectangle;
+import java.awt.Shape;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Area;
+import java.awt.geom.Line2D;
 import java.util.Random;
 
 public class Player extends GameObject{
@@ -14,6 +17,8 @@ public class Player extends GameObject{
 	Random r = new Random();
 	
 	Handler handler;
+	
+	private Shape Line;
 	
 
 	public Player(float x, float y, ID id, Handler handler) {
@@ -51,24 +56,17 @@ public class Player extends GameObject{
 				{
 					HUD.HEALTH=0;
 				}
-					else if(tempObject.getId()==ID.Boss3Laser&&(getBounds().intersectsLine(
-							Boss3.getxLineNorth(),
-							Boss3.getyLineNorth(),
-							Boss3.getxMaxLineNorth(),
-							Boss3.getyMaxLineNorth())
-							))
+			try {
+				if((tempObject.getId()==ID.Boss3Laser&&(Boss3Laser.getLine().intersects(getBounds())||Boss3Laser2.getLine().intersects(getBounds())||
+						Boss3Laser3.getLine().intersects(getBounds())||Boss3Laser4.getLine().intersects(getBounds())
+					)))
 				{
-					HUD.HEALTH-=2;
+					 	HUD.HEALTH-=1;
 				}
+			} catch (Exception e) {
+			}
+			
 		}
-	}
-	public boolean collisionAngledRectangle(Rectangle player, GameObject laser)
-	{
-		double xPlayer= player.getX();
-		double yPlayer= player.getY();
-		
-		return false;
-		
 	}
 	public void render(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
@@ -77,16 +75,13 @@ public class Player extends GameObject{
 			g2d.setColor(Color.blue);
 		
 		g2d.fillRect((int)x,(int)y, 32, 32);
-		g2d.drawLine((int) Boss3.getxLineNorth(),
-				(int)	Boss3.getyLineNorth(),
-				(int)	Boss3.getxMaxLineNorth(),
-				(int)	Boss3.getyMaxLineNorth());
 		
 	}
 	
 	public Rectangle getBounds() {
 		return new Rectangle((int)x,(int)y,32,32);
 	}
+	
 	public Area getBoundsArea() {
 		return null;
 	}

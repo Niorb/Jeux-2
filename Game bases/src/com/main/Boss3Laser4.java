@@ -13,7 +13,7 @@ import java.awt.geom.Line2D;
 import java.awt.geom.PathIterator;
 import java.util.Random;
 @SuppressWarnings("unused")
-public class Boss3Laser extends GameObject{
+public class Boss3Laser4 extends GameObject{
 	
 	private int WidthLaser;
 	private int HeightLaser;
@@ -51,7 +51,7 @@ public class Boss3Laser extends GameObject{
 	private Random r=new Random();
 	
 
-	public Boss3Laser(float x, float y, ID id, Handler handler, int WidthLaser, int HeightLaser, double theta, float xRotationCenter, float yRotationCenter) {
+	public Boss3Laser4(float x, float y, ID id, Handler handler, int WidthLaser, int HeightLaser, double theta, float xRotationCenter, float yRotationCenter) {
 		super(x, y, id);
 		this.WidthLaser=WidthLaser;
 		this.HeightLaser=HeightLaser;

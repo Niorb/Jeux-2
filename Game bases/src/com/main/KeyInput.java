@@ -3,6 +3,8 @@ package com.main;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import com.main.Game.STATE;
+
 public class KeyInput extends KeyAdapter
 {
 	private Handler handler;
@@ -19,7 +21,7 @@ public class KeyInput extends KeyAdapter
 		int key = e.getKeyCode();
 		
 		if (key== KeyEvent.VK_ESCAPE)
-			System.exit(1);
+			Game.setGameState(STATE.Pause);
 		
 		for (int i=0; i<handler.object.size(); i++)
 		{

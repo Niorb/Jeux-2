@@ -6,11 +6,11 @@ import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class Menu extends MouseAdapter{
+public class Pause extends MouseAdapter{
 	
 	private int WidthMenu=200;
 	private int HeightMenu=64;
-	private String play = "Play";
+	private String play = "Resume";
 	private	String help = "Help";
 	private	String quit = "Quit";
 	
@@ -21,7 +21,6 @@ public class Menu extends MouseAdapter{
 		if(clickedOnWindow(Game.WIDTH/2-WidthMenu/2, Game.HEIGHT/4-HeightMenu/2, WidthMenu, HeightMenu, mx, my))
 		{
 			Game.setGameState(Game.STATE.Game);
-			HUD.HEALTH=200;
 		}
 	}
 	public void mouseReleased(MouseEvent e)
@@ -46,14 +45,10 @@ public class Menu extends MouseAdapter{
 		
 		Font fnt = new Font("arial", 1, 40);
 		Font fnt2 = new Font("arial", 1, 30);
-		Font fnt3 = new Font("arial", 1, 20);
 		
 		g.setColor(Color.white);
 		g.setFont(fnt);
-		g.drawString("Menu", Game.WIDTH/2-WidthMenu/2, Game.HEIGHT/4-HeightMenu);
-		
-		g.setFont(fnt3);
-		g.drawString("Last score : "+HUD.getLastScore(), 5, 20);
+		g.drawString("Pause", Game.WIDTH/2-WidthMenu/2, Game.HEIGHT/4-HeightMenu);
 		g.setFont(fnt2);
 		g.drawRect(Game.WIDTH/2-WidthMenu/2, Game.HEIGHT/4-HeightMenu/2, WidthMenu, HeightMenu);
 		g.drawString(play,Game.WIDTH/2-play.length()*10, Game.HEIGHT/4+play.length()*2);

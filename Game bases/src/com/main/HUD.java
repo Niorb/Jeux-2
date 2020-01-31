@@ -3,6 +3,8 @@ package com.main;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import com.main.Game.STATE;
+
 public class HUD {
 	
 	public static float HEALTH= 100;
@@ -10,6 +12,14 @@ public class HUD {
 	private float greenValue=255;
 	
 	private int score=0;
+	private int lastScoreInt=0;
+	public static String lastScore="0";
+	public static String getLastScore() {
+		return lastScore;
+	}
+	public static void setLastScore(String lastScore) {
+		HUD.lastScore = lastScore;
+	}
 	private int level=1;
 	
 	public void tick()
@@ -18,7 +28,12 @@ public class HUD {
 		greenValue= Game.limits((int)greenValue, 255, 0);
 		greenValue=HEALTH*2;
 		score++;
-		
+		if(HEALTH<=0)
+		{
+			lastScore=String.valueOf(score);
+			score=0;
+		}
+	
 	}
 	public void render(Graphics g)
 	{

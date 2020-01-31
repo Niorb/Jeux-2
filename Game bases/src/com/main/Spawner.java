@@ -3,6 +3,8 @@ package com.main;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
+import com.main.Game.STATE;
+
 public class Spawner {
 	
 	private Handler handler;
@@ -13,7 +15,7 @@ public class Spawner {
 	private GameObject gameObject;
 	private boolean BossAlive=false;
 	private boolean WeirdRoom=false;
-
+	
 	private Random r=new Random();
 	
 	private int ScoreKeep=0;
@@ -29,17 +31,17 @@ public class Spawner {
 		{
 			handler.addObject(new Player(Game.WIDTH/2-32, Game.HEIGHT/2-32, ID.Player, handler));
 		}
-				ScoreKeep++;
+		ScoreKeep++;
 		Boss1();
 		Boss2();
 		Boss3();
-		basicSpawn();
 		Limitor=ThreadLocalRandom.current().nextInt(4, 25 + 1);;
+		basicSpawn();
 		
 	}
 	private void Boss3()
 	{
-		if(hud.getLevel()==1)
+		if(hud.getLevel()==16)
 		{	
 				for(int i=0; i<handler.object.size();i++)
 				{
@@ -57,7 +59,7 @@ public class Spawner {
 				handler.addObject(new Boss3(Game.WIDTH/3,100, ID.Boss3 , handler));	
 				BossAlive=true;
 			}
-			if(ScoreKeep>=6000)
+			if(ScoreKeep>=1000)
 			{
 				hud.setLevel(17);
 				ScoreKeep=regulator+1;
@@ -179,9 +181,24 @@ public class Spawner {
 		}
 			
 		
-	}
-	
-	
+	}	
 }
+		if(HUD.HEALTH<=0)
+		{
+			for(int i=0; i<handler.object.size();i++)
+			{
+				GameObject tempObject = handler.object.get(i);
+				handler.removeObject(tempObject);
+				i--;
+			}
+			hud.setLevel(1);
+			ScoreKeep=0;
+			regulator=100;
+			Slower=200;
+			Limitor=3;
+			HUD.HEALTH=200;
+			Game.setGameState(STATE.Menu);
+			BossAlive=false;
+		}
 	}
 }

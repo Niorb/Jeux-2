@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Area;
 import java.awt.geom.Line2D;
@@ -44,20 +45,27 @@ public class Boss3 extends GameObject{
 	public static double getyMaxLineNorth() {
 		return yMaxLineNorth;
 	}
-
-	private double xLineSouth;
-	private double xMaxLineSouth;
-	private double yLineSouth;
-	private double yMaxLineSouth;
-	private double xLineEast;
-	private double xMaxLineEast;
-	private double yLineEast;
-	private double yMaxLineEast;
-	private double xLineWest;
-	private double xMaxLineWest;
-	private double yLineWest;
-	private double yMaxLineWest;
 	
+	public static Shape Line1;
+	public static Shape Line2;
+	public static Shape Line3;
+	public static Shape Line4;
+	
+	public static Shape getLine1() {
+		return Line1;
+	}
+	public static Shape getLine2() {
+		return Line2;
+	}
+	public static Shape getLine3() {
+		return Line3;
+	}
+	public static Shape getLine4() {
+		return Line4;
+	}
+
+	private int counter=0;
+
 	private Handler handler;
 	public static double RotationSpeed = 1.5;
 	private int timer=50,timer2=50;
@@ -110,24 +118,22 @@ public class Boss3 extends GameObject{
 					handler.removeObject(tempObject);
 				}
 			}
-		//lasers
 			//North
 			handler.addObject(new Boss3Laser(x+WidthBoss3/2-getHeightTurretPart2()/4, y-getHeightTurretPart1()-getWidthTurretPart2()-Game.HEIGHT,
 					ID.Boss3Laser, handler,getWidthTurretPart2()/2,Game.HEIGHT,
 					theta,x+WidthBoss3/2, y+HeightBoss3/2));
-			
 			//East
-			handler.addObject(new Boss3Laser(x+WidthBoss3+WidthTurretPart1+getWidthTurretPart2(), y+HeightBoss3/2-getHeightTurretPart2()/4,
+			handler.addObject(new Boss3Laser2(x+WidthBoss3+WidthTurretPart1+getWidthTurretPart2(), y+HeightBoss3/2-getHeightTurretPart2()/4,
 					ID.Boss3Laser, handler, Game.WIDTH, getHeightTurretPart2()/2,
 					theta,x+WidthBoss3/2, y+HeightBoss3/2));
 			//South
-			handler.addObject(new Boss3Laser(x+WidthBoss3/2-getWidthTurretPart2()/4, y+HeightBoss3+getHeightTurretPart1()+getHeightTurretPart2(),
+			handler.addObject(new Boss3Laser3(x+WidthBoss3/2-getWidthTurretPart2()/4, y+HeightBoss3+getHeightTurretPart1()+getHeightTurretPart2(),
 					ID.Boss3Laser, handler, getWidthTurretPart2()/2, Game.HEIGHT,
 					theta,x+WidthBoss3/2, y+HeightBoss3/2));
 			//West
-			handler.addObject(new Boss3Laser(x-WidthTurretPart1-getWidthTurretPart2()-Game.WIDTH, y+HeightBoss3/2-getHeightTurretPart2()/4,
+			handler.addObject(new Boss3Laser4(x-WidthTurretPart1-getWidthTurretPart2()-Game.WIDTH, y+HeightBoss3/2-getHeightTurretPart2()/4,
 					ID.Boss3Laser, handler, Game.WIDTH, getHeightTurretPart2()/2,
-					theta,x+WidthBoss3/2, y+HeightBoss3/2));		
+					theta,x+WidthBoss3/2, y+HeightBoss3/2));
 		}
 		else timer--;
 	}
@@ -162,6 +168,10 @@ public class Boss3 extends GameObject{
 		
 		g2d.setTransform(old);
 	}
+	
+	
+	
+	
 	public Rectangle getBounds() {
 		return new Rectangle((int)x,(int)y, WidthBoss3,HeightBoss3);
 	}

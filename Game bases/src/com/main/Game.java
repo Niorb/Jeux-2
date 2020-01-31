@@ -18,6 +18,7 @@ public class Game extends Canvas implements Runnable{
 	private Handler handler;
 	private HUD hud;
 	private Menu menu;
+	private Pause pause;
 //	private int ennemies = 5;
 	
 	private Spawner spawner;
@@ -30,6 +31,7 @@ public class Game extends Canvas implements Runnable{
 	
 	enum STATE {
 		Game,
+		Pause,
 		Menu;
 	}
 	public static STATE gameState = STATE.Menu;
@@ -44,10 +46,12 @@ public class Game extends Canvas implements Runnable{
 	{
 		handler= new Handler();
 		menu=new Menu();
+		pause = new Pause();
 		
 		hud = new HUD();
 		spawner = new Spawner(handler, hud);
 		this.addMouseListener(menu);
+		this.addMouseListener(pause);
 		this.addKeyListener(new KeyInput(handler) );
 		
 		new Window(WIDTH, HEIGHT, "Let's build a Game !", this);
@@ -69,6 +73,8 @@ public class Game extends Canvas implements Runnable{
 			handler.tick();
 		}else if (gameState==STATE.Menu)
 			menu.tick();
+		else if(gameState==STATE.Pause)
+			pause.tick();
 	}
 	
 	private void render()
@@ -90,6 +96,8 @@ public class Game extends Canvas implements Runnable{
 			hud.render(g);
 			} else if (gameState==STATE.Menu)
 				menu.render(g);
+			else if(gameState==STATE.Pause)
+				pause.render(g);
 		g.dispose();
 		bs.show();
 	}
