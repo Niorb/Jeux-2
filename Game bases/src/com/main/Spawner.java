@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 import com.main.Game.STATE;
-
+@SuppressWarnings("static-access")
 public class Spawner {
 	
 	private Handler handler;
@@ -39,6 +39,7 @@ public class Spawner {
 		basicSpawn();
 		
 	}
+
 	private void Boss3()
 	{
 		if(hud.getLevel()==16)
@@ -171,8 +172,9 @@ public class Spawner {
 			if((hud.getLevel()==7||hud.getLevel()==13||hud.getLevel()==18)&&WeirdRoom==false) {
 				hud.setLevel(hud.getLevel()-1);
 				WeirdRoom=true;
-				}
+			}
 				handler.addObject(new basicEnemy(r.nextInt(Game.WIDTH-80), r.nextInt(Game.HEIGHT-80), ID.basicEnnemy,handler));
+				
 			if(Limitor%4==0)
 				handler.addObject(new fastEnemy(r.nextInt(Game.WIDTH-70), r.nextInt(Game.HEIGHT-70), ID.fastEnnemy,handler));
 			if(Limitor%5==0) {

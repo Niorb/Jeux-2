@@ -16,6 +16,7 @@ public enum ID {
 	Boss3LaserSouth,
 	Boss3LaserEast,
 	Boss3LaserWest,
+	CircleEnnemy,
 	Trail();
 
 }

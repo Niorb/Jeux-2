@@ -12,15 +12,15 @@ public class HUD {
 	private float greenValue=255;
 	
 	private int score=0;
-	private int lastScoreInt=0;
 	public static String lastScore="0";
+	
 	public static String getLastScore() {
 		return lastScore;
 	}
 	public static void setLastScore(String lastScore) {
 		HUD.lastScore = lastScore;
 	}
-	private int level=1;
+	private static int level=1;
 	
 	public void tick()
 	{
@@ -54,7 +54,7 @@ public class HUD {
 	public void setScore(int score) {
 		this.score = score;
 	}
-	public int getLevel() {
+	public static int getLevel() {
 		return level;
 	}
 	public void setLevel(int level) {

@@ -10,46 +10,51 @@ public class KeyInput extends KeyAdapter
 	private Handler handler;
 	private int speed=5;
 	private int finalXSpeed;
+	public boolean inMenu=true;
+//	public static boolean isInMenu() {
+//		return inMenu;
+//	}
+//
+//	public static void setInMenu(boolean inMenu) {
+//		KeyInput.inMenu = inMenu;
+//	}
 	private int finalYSpeed;
-	private static boolean EscapeStatus=true;
-	
-	public static boolean isEscapeStatus() {
-		return EscapeStatus;
-	}
-
-	public static void setEscapeStatus(boolean escapeStatus) {
-		EscapeStatus = escapeStatus;
-	}
-
+//	private static boolean EscapeStatus=true;
+//	
+//	public static boolean isEscapeStatus() {
+//		return EscapeStatus;
+//	}
+//
+//	public static void setEscapeStatus(boolean escapeStatus) {
+//		EscapeStatus = escapeStatus;
+//	}
 	public KeyInput(Handler handler) {
 		this.handler= handler;
 		
 	}
 
-	
 	public void keyPressed(KeyEvent e)
 	{
 		int key = e.getKeyCode();
 		
+		if(Game.getGameState()== STATE.Menu) inMenu=true;
+		
 		if (key==KeyEvent.VK_ESCAPE)
 			if(Game.getGameState()== STATE.Menu)
 			{
-				EscapeStatus=true;
 				System.exit(1);
-				
-			}else {
-				if(EscapeStatus)
-				{
+			}else if(Game.getGameState()==STATE.Game)
+			{
+				Game.setGameState(STATE.Pause);
+				inMenu=false;
+			}else if(Game.getGameState()==STATE.Pause)
+			{
+				System.exit(1);
+			}else if(Game.getGameState()==STATE.Help)
+				if(inMenu)
+					Game.setGameState(STATE.Menu);
+				else 
 					Game.setGameState(STATE.Pause);
-					EscapeStatus=false;
-					
-				}else {
-					EscapeStatus=true;
-					System.exit(1);
-				}	
-			}
-		
-				
 		for (int i=0; i<handler.object.size(); i++)
 		{
 			
@@ -71,7 +76,6 @@ public class KeyInput extends KeyAdapter
 				}
 			}
 		}
-		
 	}
 	public void keyReleased(KeyEvent e)
 	{

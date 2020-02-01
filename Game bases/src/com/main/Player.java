@@ -3,24 +3,16 @@ package com.main;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.Polygon;
 import java.awt.Rectangle;
-import java.awt.Shape;
-import java.awt.geom.AffineTransform;
 import java.awt.geom.Area;
-import java.awt.geom.Line2D;
 import java.util.Random;
 
 public class Player extends GameObject{
 	
 	Random r = new Random();
-	
 	Handler handler;
+	private int CircleSpawner=0;
 	
-	private Shape Line;
-	
-
 	public Player(float x, float y, ID id, Handler handler) {
 		super(x, y, id);
 		this.handler=handler;
@@ -34,8 +26,14 @@ public class Player extends GameObject{
 		
 		handler.addObject(new Trail(x, y, ID.Trail, 32, 32, 0.08f, Color.blue, handler));
 		
-		collision();
+		CircleSpawner++;
+		if(HUD.getLevel()%3==0&&CircleSpawner>=300)
+		{	
+			handler.addObject(new circleEnnemy(r.nextInt(Game.WIDTH-200), r.nextInt(Game.HEIGHT-200), ID.CircleEnnemy,handler, 60, 10, this));
+			CircleSpawner=0;
+		}
 		
+		collision();		
 	}
 	public void collision()
 	{
@@ -54,7 +52,7 @@ public class Player extends GameObject{
 				HUD.HEALTH+=2;	
 			}else if(tempObject.getId()==ID.Boss1&& getBounds().intersects(tempObject.getBounds()) )
 				{
-					HUD.HEALTH-=30;
+					HUD.HEALTH-=10;
 				}
 			try {
 				if((tempObject.getId()==ID.Boss3Laser&&(Boss3Laser.getLine().intersects(getBounds())||Boss3Laser2.getLine().intersects(getBounds())||
@@ -65,20 +63,23 @@ public class Player extends GameObject{
 				}
 			} catch (Exception e) {
 			}
-			
 		}
 	}
+	
+	
 	public void render(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		
 		if(id==ID.Player)
 			g2d.setColor(Color.blue);
-		
 		g2d.fillRect((int)x,(int)y, 32, 32);
 		
 	}
-	
 	public Rectangle getBounds() {
+		return new Rectangle((int)x,(int)y,32,32);
+}
+
+	public Rectangle getBounds2() {
 		return new Rectangle((int)x,(int)y,32,32);
 	}
 	

@@ -64,12 +64,10 @@ public class Boss3 extends GameObject{
 		return Line4;
 	}
 
-	private int counter=0;
-
 	private Handler handler;
-	public static double RotationSpeed = 1.5;
+	public static double RotationSpeed = 1.9;
 	private int timer=50,timer2=50;
-	public static int theta=1;
+	public static double theta=1;
 	
 	private Random r = new Random();
 
@@ -97,7 +95,7 @@ public class Boss3 extends GameObject{
 		
 		theta+=RotationSpeed;
 		
-		if(y-getHeightTurretPart1()-getHeightTurretPart2()<=0 || y+HeightBoss3+getHeightTurretPart1()+38>=Game.HEIGHT)
+		if(y-getHeightTurretPart1()-getHeightTurretPart2()+32<=0 || y+HeightBoss3+getHeightTurretPart1()+38+32>=Game.HEIGHT)
 			velY*=-1;
 		if(x-WidthTurretPart1-getWidthTurretPart2()<=0 || x+WidthBoss3+WidthTurretPart1+18>=Game.WIDTH)
 			velX*=-1;

@@ -3,8 +3,6 @@ package com.main;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferStrategy;
 import java.util.Random;
 
@@ -30,6 +28,7 @@ public class Game extends Canvas implements Runnable{
 	enum STATE {
 		Game,
 		Pause,
+		Help,
 		Menu;
 	}
 	public static STATE gameState = STATE.Menu;
@@ -59,7 +58,6 @@ public class Game extends Canvas implements Runnable{
 //			handler.addObject(new basicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.basicEnnemy,handler));
 //		}
 	}
-	
 	private void tick()
 	{
 		if(gameState==STATE.Game)
@@ -153,7 +151,7 @@ public class Game extends Canvas implements Runnable{
 			if(System.currentTimeMillis()-timer > 1000) 
 			{
 				timer+=1000;
-//				System.out.println("FPS: " + frames);
+				System.out.println("FPS: " + frames);
 				frames = 0;
 			}
 		}
