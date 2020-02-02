@@ -67,7 +67,7 @@ public class Player extends GameObject{
 			}
 			if(tempObject.getId()==ID.HealPack&&getBounds().intersects(tempObject.getBounds()))
 			{
-				HUD.HEALTH+=50;
+				HUD.HEALTH+=25;
 				handler.removeObject(tempObject);
 			}
 				

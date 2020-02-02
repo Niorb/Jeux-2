@@ -18,7 +18,7 @@ public class Menus extends MouseAdapter{
 	private	String help = "Help";
 	private	String quit = "Quit";
 	private String resume= "Resume";
-	private String menu = "Menu";
+	private String menu = "Super Game";
 	private String PlayerEpl = "You...";
 	private Handler handler;
 	private Random r = new Random();
