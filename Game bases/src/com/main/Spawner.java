@@ -158,6 +158,16 @@ public class Spawner {
 	
 	private void basicSpawn()
 	{
+		GameObject tempObject;
+		for(int i =0; i<handler.object.size();i++)
+		{
+			tempObject=handler.object.get(i);
+			if(tempObject.getId()==ID.MenuParticle)
+			{
+				handler.removeObject(tempObject);
+				i--;
+			}	
+		}
 		if(BossAlive==false)
 		{	
 			
@@ -180,16 +190,15 @@ public class Spawner {
 			if(Limitor%5==0) {
 				handler.addObject(new smartEnemy(r.nextInt(Game.WIDTH-70), r.nextInt(Game.HEIGHT-70), ID.smartEnnemy,handler));
 				handler.addObject(new Healer(r.nextInt(Game.WIDTH-70), r.nextInt(Game.HEIGHT-70), ID.Healer,handler));
+				handler.addObject(new HealPack(r.nextInt(Game.WIDTH-70), r.nextInt(Game.HEIGHT-70), ID.HealPack,handler));
 		}
-			
-		
 	}	
 }
 		if(HUD.HEALTH<=0)
 		{
 			for(int i=0; i<handler.object.size();i++)
 			{
-				GameObject tempObject = handler.object.get(i);
+				tempObject = handler.object.get(i);
 				handler.removeObject(tempObject);
 				i--;
 			}

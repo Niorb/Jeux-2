@@ -11,23 +11,8 @@ public class KeyInput extends KeyAdapter
 	private int speed=5;
 	private int finalXSpeed;
 	public boolean inMenu=true;
-//	public static boolean isInMenu() {
-//		return inMenu;
-//	}
-//
-//	public static void setInMenu(boolean inMenu) {
-//		KeyInput.inMenu = inMenu;
-//	}
 	private int finalYSpeed;
-//	private static boolean EscapeStatus=true;
-//	
-//	public static boolean isEscapeStatus() {
-//		return EscapeStatus;
-//	}
-//
-//	public static void setEscapeStatus(boolean escapeStatus) {
-//		EscapeStatus = escapeStatus;
-//	}
+
 	public KeyInput(Handler handler) {
 		this.handler= handler;
 		

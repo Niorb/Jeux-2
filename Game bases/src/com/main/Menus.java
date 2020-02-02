@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Random;
 
 import com.main.Game.STATE;
 
@@ -19,6 +20,8 @@ public class Menus extends MouseAdapter{
 	private String resume= "Resume";
 	private String menu = "Menu";
 	private String PlayerEpl = "You...";
+	private Handler handler;
+	private Random r = new Random();
 	
 	public void mousePressed(MouseEvent e)
 	{
@@ -57,8 +60,6 @@ public class Menus extends MouseAdapter{
 		else 
 			return false;
 	}
-
-	
 	public void tick()
 	{
 	}

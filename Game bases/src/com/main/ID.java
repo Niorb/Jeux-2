@@ -17,6 +17,8 @@ public enum ID {
 	Boss3LaserEast,
 	Boss3LaserWest,
 	CircleEnnemy,
-	Trail();
+	Trail(),
+	HealPack,
+	MenuParticle;
 
 }

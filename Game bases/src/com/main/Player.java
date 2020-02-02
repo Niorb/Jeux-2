@@ -47,10 +47,12 @@ public class Player extends GameObject{
 					)
 			{
 					HUD.HEALTH-=2;
-			}else if(tempObject.getId()==ID.Healer&&getBounds().intersects(tempObject.getBounds()))
+			}
+			if(tempObject.getId()==ID.Healer&&getBounds().intersects(tempObject.getBounds()))
 			{
 				HUD.HEALTH+=2;	
-			}else if(tempObject.getId()==ID.Boss1&& getBounds().intersects(tempObject.getBounds()) )
+			}
+			if(tempObject.getId()==ID.Boss1&& getBounds().intersects(tempObject.getBounds()) )
 				{
 					HUD.HEALTH-=10;
 				}
@@ -63,7 +65,14 @@ public class Player extends GameObject{
 				}
 			} catch (Exception e) {
 			}
-		}
+			if(tempObject.getId()==ID.HealPack&&getBounds().intersects(tempObject.getBounds()))
+			{
+				HUD.HEALTH+=50;
+				handler.removeObject(tempObject);
+			}
+				
+			
+			}
 	}
 	
 	

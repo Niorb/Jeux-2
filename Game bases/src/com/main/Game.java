@@ -16,11 +16,10 @@ public class Game extends Canvas implements Runnable{
 	private Handler handler;
 	private HUD hud;
 	private Menus menus;
+	private int i = 0;
 	
 	private Spawner spawner;
-	
-	
-	
+
 	private Random r;
 	
 	private boolean running = false;
@@ -51,12 +50,6 @@ public class Game extends Canvas implements Runnable{
 		
 		new Window(WIDTH, HEIGHT, "Let's build a Game !", this);
 		r = new Random();
-//		if(gameState==STATE.Game)
-//		{
-//			handler.addObject(new Player(WIDTH/2-32, HEIGHT/2-32, ID.Player, handler));
-////			for(int u =0; u<ennemies ; u++)
-//			handler.addObject(new basicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.basicEnnemy,handler));
-//		}
 	}
 	private void tick()
 	{
@@ -65,8 +58,17 @@ public class Game extends Canvas implements Runnable{
 			hud.tick();
 			spawner.tick();
 			handler.tick();
+		}else if(gameState==STATE.Menu||gameState==STATE.Help)
+		{
+			handler.tick();
+			menus.tick();
+			for(;i<15;i++)
+			{
+				handler.addObject(new MenuParticle(r.nextInt(Game.WIDTH),r.nextInt(Game.HEIGHT), ID.MenuParticle, handler));
+			}
 		}else
 		{
+			i=0;
 			menus.tick();
 		}
 	}
