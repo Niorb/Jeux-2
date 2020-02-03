@@ -23,6 +23,10 @@ public class Menus extends MouseAdapter{
 	private Handler handler;
 	private Random r = new Random();
 	
+	public Menus(Handler handler)
+	{
+		this.handler=handler;
+	}
 	public void mousePressed(MouseEvent e)
 	{
 		int mx = e.getX();
@@ -36,6 +40,8 @@ public class Menus extends MouseAdapter{
 		else if(clickedOnWindow(Game.WIDTH/2-WidthMenu/2, Game.HEIGHT/4-HeightMenu/2, WidthMenu, HeightMenu, mx, my)&&Game.getGameState()==STATE.Menu)
 		{
 			Game.setGameState(Game.STATE.Game);
+			handler.clearEnnemies();
+//			handler.addObject(new Player(WidthMenu/2, HeightMenu/2, ID.Player, handler));
 			HUD.HEALTH=200;
 		}
 		//QUIT

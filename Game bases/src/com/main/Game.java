@@ -4,7 +4,11 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.Random;
+
+import javax.imageio.ImageIO;
 
 public class Game extends Canvas implements Runnable{
 
@@ -38,21 +42,26 @@ public class Game extends Canvas implements Runnable{
 		Game.gameState = gameState;
 	}
 	
+	public static BufferedImage sprite_sheet;
+	
 	public Game()
 	{
 		handler= new Handler();
-		menus = new Menus();
+		menus = new Menus(handler);
 
 		hud = new HUD();
 		spawner = new Spawner(handler, hud);
 		this.addMouseListener(menus);
 		this.addKeyListener(new KeyInput(handler) );
 		
-	//	AudioPlayer.load();
-		
-
-		
+		//AudioPlayer.load();
 		new Window(WIDTH, HEIGHT, "Let's build a Game !", this);
+		
+		BufferedImageLoader loader = new BufferedImageLoader();
+		
+		sprite_sheet=loader.loadImage("/sprite_sheet.png");
+		System.out.println("Done");
+		
 		r = new Random();
 	}
 	private void tick()
@@ -65,11 +74,15 @@ public class Game extends Canvas implements Runnable{
 		}else if(gameState==STATE.Menu||gameState==STATE.Help)
 		{
 			handler.tick();
-			menus.tick();
-			for(;i<15;i++)
+			try {
+				for(;i<15;i++)
 			{
 				handler.addObject(new MenuParticle(r.nextInt(Game.WIDTH),r.nextInt(Game.HEIGHT), ID.MenuParticle, handler));
 			}
+			} catch (Exception e) {
+				// TODO: handle exception
+			}menus.tick();
+			
 		}else
 		{
 			i=0;

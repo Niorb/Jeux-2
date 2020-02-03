@@ -17,9 +17,9 @@ public class circleEnnemy extends GameObject{
 
 	private Handler handler;
 	public Ellipse2D Circle;
-	private Player player;
+	private Player1 player;
 	
-	public circleEnnemy(float x, float y, ID id, Handler handler, float MaxRadius, float MinRadius,Player player) {
+	public circleEnnemy(float x, float y, ID id, Handler handler, float MaxRadius, float MinRadius,Player1 player) {
 		super(x, y, id);
 		velX=3;
 		velY=3;
@@ -47,7 +47,7 @@ public class circleEnnemy extends GameObject{
 		{
 			velX*=-1;
 		}
-		if(y<=0||y+radius+15>Game.HEIGHT)
+		if(y<=0||y+radius+50>Game.HEIGHT)
 		{
 			velY*=-1;
 		}
@@ -73,11 +73,4 @@ public class circleEnnemy extends GameObject{
 	public Area getBoundsArea() {
 		return null;
 	}
-//	public static Ellipse2D getCircle() {
-//		return Circle;
-//	}
-//	public static void setCircle(Ellipse2D circle) {
-//		Circle = circle;
-//	}
-
 }

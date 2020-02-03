@@ -15,9 +15,9 @@ public class AudioPlayer {
 	
 	public static void load() {
 		try {
-			soundMap.put("menuSound", new Sound("res/" ));
+			soundMap.put("menuSound", new Sound("/inceptionbutton.ogg" ));
 			
-			musicMap.put("music", new Music("res/1vs0_JuniorGroove.ogg"));
+			musicMap.put("music", new Music("/1vs0_JuniorGroove.ogg"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

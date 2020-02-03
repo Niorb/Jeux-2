@@ -29,7 +29,7 @@ public class Spawner {
 	{
 		if(Limitor==3)
 		{
-			handler.addObject(new Player(Game.WIDTH/2-32, Game.HEIGHT/2-32, ID.Player, handler));
+			handler.addObject(new Player1(Game.WIDTH/2-32, Game.HEIGHT/2-32, ID.Player, handler));
 		}
 		ScoreKeep++;
 		Boss1();
