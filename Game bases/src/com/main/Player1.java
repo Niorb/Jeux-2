@@ -32,8 +32,6 @@ public class Player1 extends GameObject{
 		x=Game.limits(x,Game.WIDTH-50,0);
 		y=Game.limits(y,Game.HEIGHT-70,0);
 		
-	//	handler.addObject(new Trail(x, y, ID.Trail, 32, 32, 0.08f, Color.green, handler));
-		
 		CircleSpawner++;
 		if(HUD.getLevel()%3==0&&CircleSpawner>=300)
 		{	
