@@ -32,6 +32,7 @@ public class Game extends Canvas implements Runnable{
 		Game,
 		Pause,
 		Help,
+		Shop,
 		Menu;
 	}
 	public static STATE gameState = STATE.Menu;

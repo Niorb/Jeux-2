@@ -32,7 +32,7 @@ public class KeyInput extends KeyAdapter
 			{
 				Game.setGameState(STATE.Pause);
 				inMenu=false;
-			}else if(Game.getGameState()==STATE.Pause)
+			}else if(Game.getGameState()==STATE.Pause||Game.getGameState()==STATE.Shop)
 			{
 				System.exit(1);
 			}else if(Game.getGameState()==STATE.Help)
@@ -40,6 +40,7 @@ public class KeyInput extends KeyAdapter
 					Game.setGameState(STATE.Menu);
 				else 
 					Game.setGameState(STATE.Pause);
+		
 		for (int i=0; i<handler.object.size(); i++)
 		{
 			
@@ -48,13 +49,13 @@ public class KeyInput extends KeyAdapter
 			if(tempObject.getId()==ID.Player)
 			{
 				if(key==KeyEvent.VK_D) {
-					tempObject.setVelX(finalXSpeed=speed);}
+					tempObject.setVelX(finalXSpeed=speed+Player1.getBonusVel());}
 				if(key==KeyEvent.VK_Q) {
-					tempObject.setVelX(finalXSpeed=-speed);}
+					tempObject.setVelX(finalXSpeed=-(speed+Player1.getBonusVel()));}
 				if(key==KeyEvent.VK_S) {
-					tempObject.setVelY(finalYSpeed=speed);}
+					tempObject.setVelY(finalYSpeed=speed+Player1.getBonusVel());}
 				if(key==KeyEvent.VK_Z) {
-					tempObject.setVelY(finalYSpeed=-speed);}
+					tempObject.setVelY(finalYSpeed=-(speed+Player1.getBonusVel()));}
 				if(key==KeyEvent.VK_ENTER)
 				{
 					HUD.HEALTH=200;
@@ -68,7 +69,6 @@ public class KeyInput extends KeyAdapter
 		
 		for (int i=0; i<handler.object.size(); i++)
 		{
-			
 			GameObject tempObject = handler.object.get(i);
 			
 			if(tempObject.getId()==ID.Player)

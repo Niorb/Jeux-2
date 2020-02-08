@@ -10,6 +10,13 @@ public class HUD {
 	public static float HEALTH= 100;
 	
 	private float greenValue=255;
+	public static int MaxHealth=100;
+	public static int getMaxHealth() {
+		return MaxHealth;
+	}
+	public static void setMaxHealth(int maxHealth) {
+		MaxHealth = maxHealth;
+	}
 	
 	private int score=0;
 	public static String lastScore="0";
@@ -24,9 +31,11 @@ public class HUD {
 	
 	public void tick()
 	{
-		HEALTH= Game.limits((int)HEALTH,100, 0);
-		greenValue= Game.limits((int)greenValue, 255, 0);
+		HEALTH= Game.limits((int)HEALTH,MaxHealth, 0);
+		
 		greenValue=HEALTH*2;
+		greenValue= Game.limits((int)greenValue, 254, 0);
+		System.out.println(MaxHealth);
 		score++;
 		if(HEALTH<=0)
 		{
@@ -38,11 +47,11 @@ public class HUD {
 	public void render(Graphics g)
 	{
 		g.setColor(Color.gray);
-		g.fillRect(15, 15, 200, 32);
+		g.fillRect(15, 15, (int)HEALTH*2, 32);
 		g.setColor(new Color(75,(int)greenValue,0));
 		g.fillRect(15, 15, (int)HEALTH*2, 32);
 		g.setColor(Color.white);
-		g.drawRect(15, 15, 200, 32);
+		g.drawRect(15, 15, (int)MaxHealth*2, 32);
 		
 		g.drawString("Score: " +score,10,65);
 		g.drawString("Level: " +level,10,85);

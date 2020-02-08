@@ -1,5 +1,6 @@
 package com.main;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -12,7 +13,21 @@ public class Player1 extends GameObject{
 	Random r = new Random();
 	Handler handler;
 	private int CircleSpawner=0;
-	
+	public static int bonusVel=0;
+	public static int sizePlayer=32;
+	public static int getSizePlayer() {
+		return sizePlayer;
+	}
+	public static void setSizePlayer(int sizePlayer) {
+		Player1.sizePlayer = sizePlayer;
+	}
+	public static int getBonusVel() {
+		return bonusVel;
+	}
+	public static void setBonusVel(int bonusVel) {
+		Player1.bonusVel = bonusVel;
+	}
+
 	public static BufferedImage player_image;
 	public static BufferedImage getPlayer_image() {
 		return player_image;
@@ -26,7 +41,7 @@ public class Player1 extends GameObject{
 		
 	}
 	public void tick() {
-		x+= velX;
+		x+=velX;
 		y+=velY;
 		
 		x=Game.limits(x,Game.WIDTH-50,0);
@@ -38,7 +53,7 @@ public class Player1 extends GameObject{
 			handler.addObject(new circleEnnemy(r.nextInt(Game.WIDTH-200), r.nextInt(Game.HEIGHT-200), ID.CircleEnnemy,handler, 60, 10, this));
 			CircleSpawner=0;
 		}
-		handler.addObject(new ImageTrail((int)x, (int)y, ID.Trail, 32, 32, 0.05f, handler, player_image));
+		handler.addObject(new Trail(x, y, ID.Trail, sizePlayer, sizePlayer, 0.05f, Color.blue, handler));
 		
 		collision();		
 	}
@@ -84,19 +99,13 @@ public class Player1 extends GameObject{
 	
 	public void render(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
-		
-		g.drawImage(player_image,(int) x, (int)y, null);
-		System.out.println("done");
-		
+		g.setColor(Color.blue);
+//		g.drawImage(player_image,(int) x, (int)y, null);
+		g.fillRect((int) x, (int)y, sizePlayer, sizePlayer);
 	}
 	public Rectangle getBounds() {
-		return new Rectangle((int)x,(int)y,32,32);
-}
-
-	public Rectangle getBounds2() {
-		return new Rectangle((int)x,(int)y,32,32);
-	}
-	
+		return new Rectangle((int)x,(int)y,sizePlayer, sizePlayer);
+}	
 	public Area getBoundsArea() {
 		return null;
 	}

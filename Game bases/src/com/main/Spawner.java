@@ -60,7 +60,7 @@ public class Spawner {
 				handler.addObject(new Boss3(Game.WIDTH/3,100, ID.Boss3 , handler));	
 				BossAlive=true;
 			}
-			if(ScoreKeep>=1000)
+			if(ScoreKeep>=500)
 			{
 				hud.setLevel(17);
 				ScoreKeep=regulator+1;
@@ -179,6 +179,8 @@ public class Spawner {
 				regulator=Slower/2;
 			Slower+=50;
 			hud.setLevel(hud.getLevel()+1);
+			if(hud.getLevel()%2==0)
+				Game.setGameState(STATE.Shop);
 			if((hud.getLevel()==7||hud.getLevel()==13||hud.getLevel()==18)&&WeirdRoom==false) {
 				hud.setLevel(hud.getLevel()-1);
 				WeirdRoom=true;
@@ -192,6 +194,9 @@ public class Spawner {
 				handler.addObject(new Healer(r.nextInt(Game.WIDTH-70), r.nextInt(Game.HEIGHT-70), ID.Healer,handler));
 				handler.addObject(new HealPack(r.nextInt(Game.WIDTH-70), r.nextInt(Game.HEIGHT-70), ID.HealPack,handler));
 		}
+		
+			
+			
 	}	
 }
 		if(HUD.HEALTH<=0)
